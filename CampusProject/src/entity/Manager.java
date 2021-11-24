@@ -4,70 +4,61 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
 import entity.Security;
+import dao.SecurityDAO;
 
 public class Manager {
     private String managerID;
     private String fullName;
-    private List<Security> securities;
+    public List<Security> securityList;
+    SecurityDAO myDao = new SecurityDAO();
     InputReader in = new InputReader(System.in);
 
-    public Manager(String managerID, String fullName) {
-        this.managerID = managerID;
-        this.fullName = fullName;
-        securities = new ArrayList<>();
+    public Manager() throws IOException {
+        securityList = new ArrayList<>();
+        addSecurity();
     }
 
     //Add new security
     public void addSecurity() throws IOException {
-        System.out.println("Enter security's information.");
-
-        System.out.println("ID:");
-        String securityID = in.nextLine();
-
-        System.out.println("Full Name:");
-        String fullName = in.nextLine();
-
-        System.out.println("Base salary:");
-        double base = in.nextDouble();
-
-        Security security = new Security(securityID, fullName, base);
-        securities.add(security);
-        System.out.println("Successful");
+        securityList.add(new Security("1","Alice","Female",1000));
+        securityList.add(new Security("2", "Joe", "Male", 1000));
+        securityList.add(new Security("3", "John", "Male", 2000));
     }
 
     //View leaves
     public void viewLeaves(String id) {
-        for (int i = 0; i < securities.size(); i++) {
-            if (id.equals(securities.get(i).securityID)) {
-                System.out.println("Leave days: " + securities.get(i).leaves);
-                System.out.println("Remain leave days: " + securities.get(i).remainLeaves);
+        for (int i = 0; i < securityList.size(); i++) {
+            if (id.equals(securityList.get(i).securityID)) {
+                System.out.println("Leave days: " + securityList.get(i).leaves);
+                System.out.println("Remain leave days: " + securityList.get(i).remainLeaves);
             }
         }
     }
 
     //Calculate salary
-    public void calculateSalary(String id) {
-        for (int i = 0; i < securities.size(); i++) {
-            if (id.equals(securities.get(i).securityID)) {
-                if (securities.get(i).leaves ==0) {
-                    securities.get(i).salary = 1.1 * securities.get(i).baseSalary;
-                } else {
-                    securities.get(i).salary = securities.get(i).baseSalary - (securities.get(i).leaves*0.1*securities.get(i).baseSalary);
-                }
-            }
-        }
-    }
+//    public void calculateSalary(String id) {
+//        for (int i = 0; i < securityList.size(); i++) {
+//            if (id.equals(securities.get(i).securityID)) {
+//                if (securities.get(i).leaves ==0) {
+//                    securities.get(i).salary = 1.1 * securities.get(i).baseSalary;
+//                } else {
+//                    securities.get(i).salary = securities.get(i).baseSalary - (securities.get(i).leaves*0.1*securities.get(i).baseSalary);
+//                }
+//            }
+//        }
+//    }
 
     //View salary
-    public void viewSalary(String id) {
-        for (int i = 0; i < securities.size(); i++) {
-            if (id.equals(securities.get(i).securityID)) {
-                System.out.println(securities.get(i).securityID + " " + securities.get(i).fullName
-                        + " " + securities.get(i).salary);
-            }
-        }
-    }
+//    public void viewSalary(String id) {
+//        for (int i = 0; i < securities.size(); i++) {
+//            if (id.equals(securities.get(i).securityID)) {
+//                System.out.println(securities.get(i).securityID + " " + securities.get(i).fullName
+//                        + " " + securities.get(i).salary);
+//            }
+//        }
+//    }
     static class InputReader {
         StringTokenizer tokenizer;
         BufferedReader reader;

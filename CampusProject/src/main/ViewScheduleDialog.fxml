@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<DialogPane prefHeight="466.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Scene3Controller">
+    <content>
+        <AnchorPane prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <TableView fx:id="scheduleTable" layoutX="20.0" prefHeight="414.0" prefWidth="638.0">
+                    <columns>
+                        <TableColumn fx:id="securityID" prefWidth="84.79995346069336" text="ID" />
+                        <TableColumn fx:id="securityName" prefWidth="126.4000244140625" text="Name" />
+                        <TableColumn fx:id="workDate" prefWidth="110.39997863769531" text="Work Date" />
+                        <TableColumn fx:id="start" minWidth="9.59991455078125" prefWidth="108.79998779296875" text="Start Time" />
+                        <TableColumn fx:id="end" prefWidth="107.99996948242188" text="End Time" />
+                        <TableColumn fx:id="workPlace" prefWidth="104.00003662109373" text="Work Place" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </content>
+    <buttonTypes>
+        <ButtonType fx:constant="CLOSE" />
+    </buttonTypes>
+</DialogPane>

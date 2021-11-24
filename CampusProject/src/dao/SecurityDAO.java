@@ -1,55 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
-import entity.Book;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import entity.Security;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Administrator
- */
-public class BookDAO {
+public class SecurityDAO {
     private String pathStr = "Data";
-    private String fileNameChar = "Book_Data_Character.txt";
-    private String fileNameByte = "Book_Data_Byte.txt";
+    private String fileNameChar = "Security_Data_Character.txt";
+    private String fileNameByte = "Security_Data_Byte.txt";
 
-    public BookDAO() {
+    public SecurityDAO() {
         this.createFolder();
     }
 
-  
     public void createFolder() {
         File folder = new File(pathStr);
         if (folder.exists()) {
-            System.out.println("Folder exist");
+
         } else {
             folder.mkdirs();
-            System.out.println("Folder created");
+
         }
     }
 
-  
-    public void saveListBookasByte(ArrayList<Book> listBook) {
+
+    public void saveListSecurityAsByte(List<Security> listSecurity) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream(pathStr + "\\" + fileNameByte);
             oos = new ObjectOutputStream(fos);
 
-            oos.writeObject(listBook);
+            oos.writeObject(listSecurity);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -65,14 +49,14 @@ public class BookDAO {
         }
     }
 
-    public ArrayList<Book> readListBookasByte() {
+    public List<Security> readListSecurityAsByte() {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
-        ArrayList<Book> listBook = new ArrayList<>();
+        List<Security> listSecurity = new ArrayList<>();
         try {
             fis = new FileInputStream(pathStr + "\\" + fileNameByte);
             ois = new ObjectInputStream(fis);
-            listBook = (ArrayList<Book>) ois.readObject();
+            listSecurity = (List<Security>) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
@@ -87,21 +71,20 @@ public class BookDAO {
                 System.out.println(ex.getMessage());
             }
         }
-        return listBook;
+        return listSecurity;
     }
 
-    public void saveListBookasChar(ArrayList<Book> listStudent) {
+    public void saveListSecurityAsChar(List<Security> listSecurity) {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
             fw = new FileWriter(pathStr + "\\" + fileNameChar);
             bw = new BufferedWriter(fw);
 
-            for (int i = 0; i < listStudent.size(); i++) {
-                bw.write(listStudent.get(i).getInfoAsString());
+            for (int i = 0; i < listSecurity.size(); i++) {
+                bw.write(listSecurity.get(i).getInfoAsString());
                 bw.newLine();
             }
-
             bw.flush();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
