@@ -19,10 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.NoSuchElementException;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Predicate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
@@ -39,9 +36,9 @@ public class Scene3Controller implements Initializable{
     @FXML
     private TableColumn<Security, String> securityName;
     @FXML
-    private TableColumn<Security, Integer> end;
+    private TableColumn<Duty, List<Duty>> end;
     @FXML
-    private TableColumn<Duty, Integer> start;
+    private TableColumn<Security, Integer> start;
     @FXML
     private TableColumn<Duty, Date> workDate;
     @FXML
@@ -63,12 +60,13 @@ public class Scene3Controller implements Initializable{
         if(dialog.showAndWait().get() == ButtonType.CLOSE) {
             dialog.close();
         }
-
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        securityID.setCellValueFactory(new PropertyValueFactory<Security, String>("securityID"));
+//        securityID.setCellValueFactory(new PropertyValueFactory<Security, String>("securityID"));
+        end.setCellValueFactory(new PropertyValueFactory<Duty, List<Duty>>("dutyList"));
 
         scheduleTable.setItems(list);
     }

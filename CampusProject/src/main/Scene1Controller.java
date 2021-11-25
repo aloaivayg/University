@@ -35,6 +35,7 @@ public class Scene1Controller {
             stage = (Stage) ((Node) ev.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
+//            stage.setResizable(true);
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

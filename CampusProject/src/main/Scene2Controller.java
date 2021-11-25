@@ -7,6 +7,7 @@ import entity.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,22 +75,36 @@ public class Scene2Controller implements Initializable {
         }
     }
 
+    public void openAddSecurity() throws IOException {
+        Scene4Controller scene4Controller = new Scene4Controller();
+        scene4Controller.addSecurity();
+    }
+
     public void viewSchedule(javafx.event.ActionEvent ev) throws IOException {
         Scene3Controller scene3Controller = new Scene3Controller();
         scene3Controller.viewSchedule();
     }
 
+    public void calSalary() {
+        manager.calculateSalary();
+        securityTable.refresh();
+    }
+
     public void save(javafx.event.ActionEvent ev) throws IOException {
-        myDao.saveListSecurityAsChar(manager.securityList);
-        myDao.saveListSecurityAsByte(manager.securityList);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Save");
-        alert.setContentText("Successful");
-        try {
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                alert.close();
-            }
-        } catch (NoSuchElementException ignored){}
+//        myDao.saveListSecurityAsChar(manager.securityList);
+//        myDao.saveListSecurityAsByte(manager.securityList);
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Save");
+//        alert.setContentText("Successful");
+//        try {
+//            if (alert.showAndWait().get() == ButtonType.OK) {
+//                alert.close();
+//            }
+//        } catch (NoSuchElementException ignored){}
+        this.manager.securityList = myDao.readListSecurityAsByte();
+        ObservableList<Security> list = FXCollections.observableArrayList(manager.securityList);
+        securityTable.setItems(list);
+        securityTable.refresh();
     }
 
     //Search Alg
@@ -122,5 +137,7 @@ public class Scene2Controller implements Initializable {
         salary.setCellValueFactory(new PropertyValueFactory<Security, Double>("salary"));
         securityTable.setItems(list);
     }
+
+
 }
 

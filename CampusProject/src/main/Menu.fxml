@@ -13,10 +13,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Scene2Controller">
    <children>
-      <Button layoutY="69.0" mnemonicParsing="false" text="Create Schedule " />
-      <Button layoutX="-1.0" layoutY="123.0" mnemonicParsing="false" onAction="#viewSchedule"  prefHeight="26.0" prefWidth="106.0" text="View Schedule" />
-      <Button layoutX="-1.0" layoutY="173.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="Calculate Salary" />
-      <Button layoutX="-1.0" layoutY="225.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="View leave days" />
+      <Button layoutY="51.0" mnemonicParsing="false" text="Create Schedule " />
+      <Button layoutX="-1.0" layoutY="94.0" mnemonicParsing="false" onAction="#viewSchedule" prefHeight="26.0" prefWidth="106.0" text="View Schedule" />
+      <Button fx:id="calSalaryBtn" layoutY="180.0" mnemonicParsing="false" onAction="#calSalary" prefHeight="26.0" prefWidth="106.0" text="Calculate Salary" />
+      <Button layoutX="-1.0" layoutY="222.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="106.0" text="View leave days" />
       <MenuBar layoutY="1.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -45,7 +45,7 @@
             <TableColumn fx:id="salary" prefWidth="111.199951171875" text="Salary" />
         </columns>
       </TableView>
-      <Button fx:id="saveButton" layoutY="278.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="106.0" text="Save" />
+      <Button fx:id="saveButton" layoutX="-1.0" layoutY="269.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="106.0" text="Save" />
       <TextField fx:id="searchBar" layoutX="189.0" layoutY="1.0" onAction="#doSearch" prefHeight="26.0" prefWidth="327.0" promptText="Search...">
          <effect>
             <InnerShadow>
@@ -55,5 +55,6 @@
             </InnerShadow>
          </effect>
       </TextField>
+      <Button fx:id="addBtn" layoutX="-1.0" layoutY="139.0" mnemonicParsing="false" onAction="#openAddSecurity" prefHeight="26.0" prefWidth="106.0" text="Add Security" />
    </children>
 </AnchorPane>
